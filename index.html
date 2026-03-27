@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>玄开悟-AI导航 | AI工具导航</title>
+    <title>玄开悟-AI导航 | WebStack-Hugo风格</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         * {
@@ -20,6 +20,8 @@
             --accent-color: #4a90e2;
             --border-color: #e1e8ed;
             --header-bg: #ffffff;
+            --nav-bg: #2c3e50;
+            --nav-text: #ecf0f1;
         }
 
         .dark-mode {
@@ -30,185 +32,345 @@
             --accent-color: #6c5ce7;
             --border-color: #2d3436;
             --header-bg: #16213e;
+            --nav-bg: #0f3460;
+            --nav-text: #ecf0f1;
         }
 
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             background-color: var(--bg-color);
             color: var(--text-color);
             line-height: 1.6;
             transition: background-color 0.3s, color 0.3s;
         }
 
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 20px;
-        }
-
-        /* Header */
-        header {
-            background-color: var(--header-bg);
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-            padding: 20px 0;
+        /* Navigation Bar */
+        nav {
+            background-color: var(--nav-bg);
+            color: var(--nav-text);
+            padding: 15px 0;
             position: sticky;
             top: 0;
             z-index: 100;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
             transition: background-color 0.3s;
         }
 
-        .header-content {
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
         }
 
-        .logo {
-            font-size: 24px;
-            font-weight: bold;
-            color: var(--accent-color);
+        .nav-logo {
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 12px;
+            font-size: 26px;
+            font-weight: bold;
+            color: var(--nav-text);
+            text-decoration: none;
         }
 
-        .nav-buttons {
+        .nav-menu {
             display: flex;
-            gap: 10px;
+            gap: 30px;
+            align-items: center;
+        }
+
+        .nav-link {
+            color: var(--nav-text);
+            text-decoration: none;
+            font-size: 15px;
+            transition: color 0.3s;
+        }
+
+        .nav-link:hover {
+            color: var(--accent-color);
+        }
+
+        .nav-actions {
+            display: flex;
+            gap: 15px;
+            align-items: center;
         }
 
         .nav-btn {
-            padding: 8px 16px;
+            padding: 8px 18px;
             border: none;
-            border-radius: 5px;
+            border-radius: 20px;
             background-color: var(--accent-color);
             color: white;
             cursor: pointer;
-            transition: background-color 0.3s;
+            font-size: 14px;
+            transition: background-color 0.3s, transform 0.2s;
         }
 
         .nav-btn:hover {
             background-color: var(--accent-color);
             opacity: 0.9;
+            transform: translateY(-2px);
         }
 
         /* Search */
-        .search-box {
-            margin: 30px 0;
+        .search-section {
+            background: linear-gradient(135deg, var(--nav-bg) 0%, var(--accent-color) 100%);
+            padding: 80px 20px;
             text-align: center;
+            color: white;
+        }
+
+        .search-title {
+            font-size: 42px;
+            font-weight: bold;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .search-subtitle {
+            font-size: 18px;
+            margin-bottom: 40px;
+            opacity: 0.9;
+        }
+
+        .search-box {
+            max-width: 700px;
+            margin: 0 auto;
+            position: relative;
         }
 
         .search-input {
             width: 100%;
-            max-width: 600px;
-            padding: 15px 20px;
-            border: 2px solid var(--border-color);
-            border-radius: 30px;
+            padding: 18px 25px;
+            border: 2px solid transparent;
+            border-radius: 50px;
             font-size: 16px;
-            background-color: var(--card-bg);
-            color: var(--text-color);
-            transition: border-color 0.3s;
+            background-color: rgba(255,255,255,0.95);
+            color: #333;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            transition: all 0.3s;
         }
 
         .search-input:focus {
             outline: none;
-            border-color: var(--accent-color);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+            transform: translateY(-2px);
         }
 
-        /* Categories */
+        .search-icon {
+            position: absolute;
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #666;
+            font-size: 18px;
+        }
+
+        /* Content */
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
         .category {
-            margin: 40px 0;
+            margin: 50px 0;
+            animation: fadeIn 0.6s ease-in;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
         .category-header {
             display: flex;
             align-items: center;
-            margin-bottom: 20px;
-            padding-bottom: 10px;
-            border-bottom: 2px solid var(--border-color);
+            margin-bottom: 30px;
+            padding-bottom: 15px;
+            border-bottom: 3px solid var(--accent-color);
+            background: linear-gradient(90deg, var(--accent-color), transparent);
+            padding: 20px;
+            border-radius: 10px;
         }
 
         .category-icon {
-            font-size: 24px;
-            color: var(--accent-color);
-            margin-right: 15px;
+            font-size: 32px;
+            color: white;
+            background: var(--accent-color);
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 20px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
         }
 
         .category-title {
-            font-size: 22px;
+            font-size: 28px;
             font-weight: bold;
+            color: white;
         }
 
         .sub-category {
-            margin: 20px 0;
+            margin: 30px 0;
         }
 
         .sub-category-title {
-            font-size: 18px;
+            font-size: 20px;
             font-weight: 600;
-            margin-bottom: 15px;
+            margin-bottom: 20px;
             color: var(--text-color);
+            padding-left: 15px;
+            border-left: 4px solid var(--accent-color);
         }
 
         .grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 20px;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 25px;
         }
 
         .card {
             background-color: var(--card-bg);
-            border-radius: 10px;
-            padding: 20px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-            transition: transform 0.3s, box-shadow 0.3s;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            transition: all 0.3s;
             cursor: pointer;
             text-decoration: none;
             color: var(--text-color);
             display: block;
-            border: 1px solid var(--border-color);
+            border: 2px solid var(--border-color);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--accent-color), #00d2d3);
+            transform: scaleX(0);
+            transition: transform 0.3s;
         }
 
         .card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            transform: translateY(-8px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.2);
             border-color: var(--accent-color);
         }
 
-        .card-title {
-            font-size: 18px;
-            font-weight: bold;
-            margin-bottom: 8px;
-            color: var(--accent-color);
-        }
-
-        .card-description {
-            font-size: 14px;
-            color: var(--text-secondary);
-            line-height: 1.5;
+        .card:hover::before {
+            transform: scaleX(1);
         }
 
         .card-icon {
-            font-size: 24px;
-            margin-bottom: 10px;
+            font-size: 36px;
+            margin-bottom: 18px;
             color: var(--accent-color);
+        }
+
+        .card-title {
+            font-size: 20px;
+            font-weight: bold;
+            margin-bottom: 12px;
+            color: var(--text-color);
+        }
+
+        .card-description {
+            font-size: 15px;
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        .card-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 1px solid var(--border-color);
+            font-size: 13px;
+            color: var(--text-secondary);
+        }
+
+        .card-tag {
+            background-color: var(--accent-color);
+            color: white;
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-size: 12px;
         }
 
         /* Footer */
         footer {
             background-color: var(--header-bg);
-            padding: 30px 0;
-            margin-top: 60px;
+            padding: 50px 20px;
+            margin-top: 80px;
             text-align: center;
             border-top: 1px solid var(--border-color);
         }
 
+        .footer-content {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
         .footer-text {
             color: var(--text-secondary);
-            font-size: 14px;
+            font-size: 15px;
+            margin-bottom: 10px;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 20px;
+        }
+
+        .footer-link {
+            color: var(--accent-color);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-link:hover {
+            color: var(--text-color);
+        }
+
+        /* Stats */
+        .stats {
+            display: flex;
+            justify-content: center;
+            gap: 50px;
+            margin: 60px 0;
+            flex-wrap: wrap;
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 48px;
+            font-weight: bold;
+            color: var(--accent-color);
+            margin-bottom: 8px;
+        }
+
+        .stat-label {
+            font-size: 16px;
+            color: var(--text-secondary);
         }
 
         /* Responsive */
@@ -217,28 +379,67 @@
                 grid-template-columns: 1fr;
             }
 
-            .header-content {
+            .nav-container {
                 flex-direction: column;
                 gap: 15px;
+            }
+
+            .nav-menu {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .search-title {
+                font-size: 32px;
+            }
+
+            .stats {
+                gap: 30px;
+            }
+
+            .stat-number {
+                font-size: 36px;
             }
         }
 
         /* Loading */
         .loading {
             text-align: center;
-            padding: 40px;
+            padding: 60px;
             color: var(--text-secondary);
+        }
+
+        .spinner {
+            border: 4px solid var(--border-color);
+            border-top: 4px solid var(--accent-color);
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 20px;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
         }
     </style>
 </head>
 <body>
-    <header>
-        <div class="header-content">
-            <div class="logo">
+    <nav>
+        <div class="nav-container">
+            <a href="https://github.com/rushwei" target="_blank" class="nav-logo">
                 <i class="fas fa-compass"></i>
                 玄开悟-AI导航
+            </a>
+            <div class="nav-menu">
+                <a href="#ai-paint" class="nav-link">AI绘画</a>
+                <a href="#ai-chat" class="nav-link">AI对话</a>
+                <a href="#ai-write" class="nav-link">AI写作</a>
+                <a href="#ai-dev" class="nav-link">AI开发</a>
+                <a href="#learning" class="nav-link">学习资源</a>
             </div>
-            <div class="nav-buttons">
+            <div class="nav-actions">
                 <button class="nav-btn" onclick="toggleDarkMode()">
                     <i class="fas fa-moon"></i> 夜间模式
                 </button>
@@ -247,17 +448,41 @@
                 </a>
             </div>
         </div>
-    </header>
+    </nav>
 
-    <div class="container">
+    <div class="search-section">
+        <h1 class="search-title">探索AI的无限可能</h1>
+        <p class="search-subtitle">精选AI工具导航，助您开启智能时代之旅</p>
         <div class="search-box">
             <input type="text" class="search-input" placeholder="搜索AI工具..." id="searchInput" oninput="search()">
+            <i class="fas fa-search search-icon"></i>
+        </div>
+    </div>
+
+    <div class="container">
+        <!-- Stats -->
+        <div class="stats">
+            <div class="stat-item">
+                <div class="stat-number">50+</div>
+                <div class="stat-label">AI工具</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">5</div>
+                <div class="stat-label">分类导航</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">100%</div>
+                <div class="stat-label">免费收录</div>
+            </div>
         </div>
 
         <div id="content">
-            <div class="category">
+            <!-- AI绘画 -->
+            <div class="category" id="ai-paint">
                 <div class="category-header">
-                    <i class="fas fa-palette category-icon"></i>
+                    <div class="category-icon">
+                        <i class="fas fa-palette"></i>
+                    </div>
                     <span class="category-title">AI绘画</span>
                 </div>
 
@@ -268,26 +493,76 @@
                             <div class="card-icon"><i class="fas fa-image"></i></div>
                             <div class="card-title">Midjourney</div>
                             <div class="card-description">AI绘画神器，生成惊艳图像</div>
+                            <div class="card-meta">
+                                <span><i class="fas fa-star"></i> 5.0</span>
+                                <span class="card-tag">热门</span>
+                            </div>
                         </a>
 
                         <a href="https://openai.com/dall-e-3" target="_blank" class="card">
                             <div class="card-icon"><i class="fas fa-paint-brush"></i></div>
                             <div class="card-title">DALL-E 3</div>
                             <div class="card-description">OpenAI最新图像生成模型</div>
+                            <div class="card-meta">
+                                <span><i class="fas fa-star"></i> 4.9</span>
+                                <span class="card-tag">推荐</span>
+                            </div>
                         </a>
 
                         <a href="https://stability.ai" target="_blank" class="card">
                             <div class="card-icon"><i class="fas fa-rocket"></i></div>
                             <div class="card-title">Stable Diffusion</div>
                             <div class="card-description">开源AI图像生成模型</div>
+                            <div class="card-meta">
+                                <span><i class="fas fa-star"></i> 4.8</span>
+                                <span class="card-tag">开源</span>
+                            </div>
+                        </a>
+
+                        <a href="https://firefly.adobe.com" target="_blank" class="card">
+                            <div class="card-icon"><i class="fas fa-magic"></i></div>
+                            <div class="card-title">Adobe Firefly</div>
+                            <div class="card-description">Adobe AI图像编辑工具</div>
+                            <div class="card-meta">
+                                <span><i class="fas fa-star"></i> 4.7</span>
+                                <span class="card-tag">编辑</span>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="sub-category">
+                    <div class="sub-category-title">图像编辑</div>
+                    <div class="grid">
+                        <a href="https://www.remove.bg" target="_blank" class="card">
+                            <div class="card-icon"><i class="fas fa-eraser"></i></div>
+                            <div class="card-title">Remove.bg</div>
+                            <div class="card-description">AI一键去除背景</div>
+                            <div class="card-meta">
+                                <span><i class="fas fa-star"></i> 4.6</span>
+                                <span class="card-tag">实用</span>
+                            </div>
+                        </a>
+
+                        <a href="https://www.upscayl.com" target="_blank" class="card">
+                            <div class="card-icon"><i class="fas fa-expand"></i></div>
+                            <div class="card-title">Upscayl</div>
+                            <div class="card-description">AI图像放大工具</div>
+                            <div class="card-meta">
+                                <span><i class="fas fa-star"></i> 4.5</span>
+                                <span class="card-tag">放大</span>
+                            </div>
                         </a>
                     </div>
                 </div>
             </div>
 
-            <div class="category">
+            <!-- AI对话 -->
+            <div class="category" id="ai-chat">
                 <div class="category-header">
-                    <i class="fas fa-comments category-icon"></i>
+                    <div class="category-icon">
+                        <i class="fas fa-comments"></i>
+                    </div>
                     <span class="category-title">AI对话</span>
                 </div>
 
@@ -298,26 +573,86 @@
                             <div class="card-icon"><i class="fas fa-robot"></i></div>
                             <div class="card-title">ChatGPT</div>
                             <div class="card-description">OpenAI的AI对话助手</div>
+                            <div class="card-meta">
+                                <span><i class="fas fa-star"></i> 5.0</span>
+                                <span class="card-tag">顶级</span>
+                            </div>
                         </a>
 
                         <a href="https://claude.ai" target="_blank" class="card">
                             <div class="card-icon"><i class="fas fa-brain"></i></div>
                             <div class="card-title">Claude</div>
                             <div class="card-description">Anthropic的AI助手</div>
+                            <div class="card-meta">
+                                <span><i class="fas fa-star"></i> 4.9</span>
+                                <span class="card-tag">推荐</span>
+                            </div>
                         </a>
 
                         <a href="https://yiyan.baidu.com" target="_blank" class="card">
-                            <div class="card-icon"><i class="fas fa-comments"></i></div>
+                            <div class="card-icon"><i class="fas fa-comment-dots"></i></div>
                             <div class="card-title">文心一言</div>
                             <div class="card-description">百度AI大语言模型</div>
+                            <div class="card-meta">
+                                <span><i class="fas fa-star"></i> 4.7</span>
+                                <span class="card-tag">中文</span>
+                            </div>
+                        </a>
+
+                        <a href="https://tongyi.aliyun.com" target="_blank" class="card">
+                            <div class="card-icon"><i class="fas fa-cloud"></i></div>
+                            <div class="card-title">通义千问</div>
+                            <div class="card-description">阿里AI大语言模型</div>
+                            <div class="card-meta">
+                                <span><i class="fas fa-star"></i> 4.6</span>
+                                <span class="card-tag">企业</span>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="sub-category">
+                    <div class="sub-category-title">编程助手</div>
+                    <div class="grid">
+                        <a href="https://github.com/features/copilot" target="_blank" class="card">
+                            <div class="card-icon"><i class="fas fa-code"></i></div>
+                            <div class="card-title">GitHub Copilot</div>
+                            <div class="card-description">GitHub AI编程助手</div>
+                            <div class="card-meta">
+                                <span><i class="fas fa-star"></i> 4.8</span>
+                                <span class="card-tag">编码</span>
+                            </div>
+                        </a>
+
+                        <a href="https://cursor.sh" target="_blank" class="card">
+                            <div class="card-icon"><i class="fas fa-laptop-code"></i></div>
+                            <div class="card-title">Cursor</div>
+                            <div class="card-description">AI代码编辑器</div>
+                            <div class="card-meta">
+                                <span><i class="fas fa-star"></i> 4.7</span>
+                                <span class="card-tag">编辑器</span>
+                            </div>
+                        </a>
+
+                        <a href="https://codeium.com" target="_blank" class="card">
+                            <div class="card-icon"><i class="fas fa-terminal"></i></div>
+                            <div class="card-title">Codeium</div>
+                            <div class="card-description">免费AI编程助手</div>
+                            <div class="card-meta">
+                                <span><i class="fas fa-star"></i> 4.5</span>
+                                <span class="card-tag">免费</span>
+                            </div>
                         </a>
                     </div>
                 </div>
             </div>
 
-            <div class="category">
+            <!-- AI写作 -->
+            <div class="category" id="ai-write">
                 <div class="category-header">
-                    <i class="fas fa-pencil category-icon"></i>
+                    <div class="category-icon">
+                        <i class="fas fa-pencil-alt"></i>
+                    </div>
                     <span class="category-title">AI写作</span>
                 </div>
 
@@ -325,29 +660,54 @@
                     <div class="sub-category-title">文案生成</div>
                     <div class="grid">
                         <a href="https://notion.so" target="_blank" class="card">
-                            <div class="card-icon"><i class="fas fa-edit"></i></div>
+                            <div class="card-icon"><i class="fas fa-file-alt"></i></div>
                             <div class="card-title">Notion AI</div>
                             <div class="card-description">Notion内置AI写作功能</div>
+                            <div class="card-meta">
+                                <span><i class="fas fa-star"></i> 4.9</span>
+                                <span class="card-tag">综合</span>
+                            </div>
                         </a>
 
                         <a href="https://www.jasper.ai" target="_blank" class="card">
                             <div class="card-icon"><i class="fas fa-pen-fancy"></i></div>
                             <div class="card-title">Jasper</div>
                             <div class="card-description">AI内容创作平台</div>
+                            <div class="card-meta">
+                                <span><i class="fas fa-star"></i> 4.8</span>
+                                <span class="card-tag">专业</span>
+                            </div>
                         </a>
 
                         <a href="https://copy.ai" target="_blank" class="card">
                             <div class="card-icon"><i class="fas fa-copy"></i></div>
                             <div class="card-title">Copy.ai</div>
                             <div class="card-description">AI文案生成工具</div>
+                            <div class="card-meta">
+                                <span><i class="fas fa-star"></i> 4.7</span>
+                                <span class="card-tag">营销</span>
+                            </div>
+                        </a>
+
+                        <a href="https://writesonic.com" target="_blank" class="card">
+                            <div class="card-icon"><i class="fas fa-feather"></i></div>
+                            <div class="card-title">WriteSonic</div>
+                            <div class="card-description">AI内容生成工具</div>
+                            <div class="card-meta">
+                                <span><i class="fas fa-star"></i> 4.6</span>
+                                <span class="card-tag">高效</span>
+                            </div>
                         </a>
                     </div>
                 </div>
             </div>
 
-            <div class="category">
+            <!-- AI开发 -->
+            <div class="category" id="ai-dev">
                 <div class="category-header">
-                    <i class="fas fa-code category-icon"></i>
+                    <div class="category-icon">
+                        <i class="fas fa-cogs"></i>
+                    </div>
                     <span class="category-title">AI开发</span>
                 </div>
 
@@ -358,12 +718,30 @@
                             <div class="card-icon"><i class="fas fa-cube"></i></div>
                             <div class="card-title">Hugging Face</div>
                             <div class="card-description">AI模型托管平台</div>
+                            <div class="card-meta">
+                                <span><i class="fas fa-star"></i> 5.0</span>
+                                <span class="card-tag">必备</span>
+                            </div>
                         </a>
 
                         <a href="https://platform.openai.com" target="_blank" class="card">
-                            <div class="card-icon"><i class="fas fa-cogs"></i></div>
+                            <div class="card-icon"><i class="fas fa-database"></i></div>
                             <div class="card-title">OpenAI API</div>
                             <div class="card-description">OpenAI API平台</div>
+                            <div class="card-meta">
+                                <span><i class="fas fa-star"></i> 4.9</span>
+                                <span class="card-tag">API</span>
+                            </div>
+                        </a>
+
+                        <a href="https://tensorflow.org" target="_blank" class="card">
+                            <div class="card-icon"><i class="fas fa-brain"></i></div>
+                            <div class="card-title">TensorFlow</div>
+                            <div class="card-description">开源机器学习框架</div>
+                            <div class="card-meta">
+                                <span><i class="fas fa-star"></i> 4.8</span>
+                                <span class="card-tag">框架</span>
+                            </div>
                         </a>
                     </div>
                 </div>
@@ -375,20 +753,31 @@
                             <div class="card-icon"><i class="fas fa-magic"></i></div>
                             <div class="card-title">PromptBase</div>
                             <div class="card-description">AI提示词市场</div>
+                            <div class="card-meta">
+                                <span><i class="fas fa-star"></i> 4.7</span>
+                                <span class="card-tag">市场</span>
+                            </div>
                         </a>
 
                         <a href="https://flowgpt.com" target="_blank" class="card">
                             <div class="card-icon"><i class="fas fa-wind"></i></div>
                             <div class="card-title">FlowGPT</div>
                             <div class="card-description">AI提示词分享社区</div>
+                            <div class="card-meta">
+                                <span><i class="fas fa-star"></i> 4.6</span>
+                                <span class="card-tag">社区</span>
+                            </div>
                         </a>
                     </div>
                 </div>
             </div>
 
-            <div class="category">
+            <!-- 学习资源 -->
+            <div class="category" id="learning">
                 <div class="category-header">
-                    <i class="fas fa-book category-icon"></i>
+                    <div class="category-icon">
+                        <i class="fas fa-graduation-cap"></i>
+                    </div>
                     <span class="category-title">学习资源</span>
                 </div>
 
@@ -396,15 +785,58 @@
                     <div class="sub-category-title">在线课程</div>
                     <div class="grid">
                         <a href="https://fast.ai" target="_blank" class="card">
-                            <div class="card-icon"><i class="fas fa-graduation-cap"></i></div>
+                            <div class="card-icon"><i class="fas fa-bolt"></i></div>
                             <div class="card-title">Fast.ai</div>
                             <div class="card-description">深度学习课程</div>
+                            <div class="card-meta">
+                                <span><i class="fas fa-star"></i> 4.9</span>
+                                <span class="card-tag">免费</span>
+                            </div>
                         </a>
 
                         <a href="https://www.coursera.org/browse/artificial-intelligence" target="_blank" class="card">
                             <div class="card-icon"><i class="fas fa-university"></i></div>
                             <div class="card-title">Coursera AI</div>
                             <div class="card-description">Coursera AI课程</div>
+                            <div class="card-meta">
+                                <span><i class="fas fa-star"></i> 4.8</span>
+                                <span class="card-tag">大学</span>
+                            </div>
+                        </a>
+
+                        <a href="https://www.udacity.com/course/deep-learning-nanodegree--nd101" target="_blank" class="card">
+                            <div class="card-icon"><i class="fas fa-certificate"></i></div>
+                            <div class="card-title">Udacity</div>
+                            <div class="card-description">深度学习纳米学位</div>
+                            <div class="card-meta">
+                                <span><i class="fas fa-star"></i> 4.7</span>
+                                <span class="card-tag">学位</span>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="sub-category">
+                    <div class="sub-category-title">文档教程</div>
+                    <div class="grid">
+                        <a href="https://cookbook.openai.com" target="_blank" class="card">
+                            <div class="card-icon"><i class="fas fa-book-open"></i></div>
+                            <div class="card-title">OpenAI Cookbook</div>
+                            <div class="card-description">OpenAI官方教程</div>
+                            <div class="card-meta">
+                                <span><i class="fas fa-star"></i> 4.9</span>
+                                <span class="card-tag">官方</span>
+                            </div>
+                        </a>
+
+                        <a href="https://python.langchain.com" target="_blank" class="card">
+                            <div class="card-icon"><i class="fas fa-book"></i></div>
+                            <div class="card-title">LangChain</div>
+                            <div class="card-description">LangChain开发文档</div>
+                            <div class="card-meta">
+                                <span><i class="fas fa-star"></i> 4.8</span>
+                                <span class="card-tag">框架</span>
+                            </div>
                         </a>
                     </div>
                 </div>
@@ -413,8 +845,17 @@
     </div>
 
     <footer>
-        <div class="container">
-            <p class="footer-text">© 2026 玄开悟-AI导航 | 探索人工智能的无限可能</p>
+        <div class="footer-content">
+            <p class="footer-text">© 2026 玄开悟-AI导航 | 基于 WebStack-Hugo 风格设计</p>
+            <p class="footer-text">探索人工智能的无限可能 · 让AI触手可及</p>
+            <div class="footer-links">
+                <a href="https://github.com/rushwei" target="_blank" class="footer-link">
+                    <i class="fab fa-github"></i> GitHub
+                </a>
+                <a href="mailto:2667339025@qq.com" class="footer-link">
+                    <i class="fas fa-envelope"></i> 联系我们
+                </a>
+            </div>
         </div>
     </footer>
 
@@ -430,22 +871,70 @@
             document.body.classList.add('dark-mode');
         }
 
-        // Search Function
+        // Search Function with real-time filtering
         function search() {
-            const searchTerm = document.getElementById('searchInput').value.toLowerCase();
+            const searchTerm = document.getElementById('searchInput').value.toLowerCase().trim();
             const cards = document.querySelectorAll('.card');
+            const subCategories = document.querySelectorAll('.sub-category');
+
+            if (searchTerm === '') {
+                // Show everything
+                cards.forEach(card => card.style.display = 'block');
+                subCategories.forEach(sub => sub.style.display = 'block');
+                return;
+            }
 
             cards.forEach(card => {
                 const title = card.querySelector('.card-title').textContent.toLowerCase();
                 const description = card.querySelector('.card-description').textContent.toLowerCase();
+                const tags = card.querySelector('.card-tag') ? card.querySelector('.card-tag').textContent.toLowerCase() : '';
 
-                if (title.includes(searchTerm) || description.includes(searchTerm)) {
-                    card.style.display = 'block';
-                } else {
-                    card.style.display = 'none';
-                }
+                const matches = title.includes(searchTerm) ||
+                              description.includes(searchTerm) ||
+                              tags.includes(searchTerm);
+
+                card.style.display = matches ? 'block' : 'none';
+            });
+
+            // Hide empty sub-categories
+            subCategories.forEach(sub => {
+                const visibleCards = sub.querySelectorAll('.card[style="display: block"]');
+                const allCards = sub.querySelectorAll('.card');
+                const hasVisible = Array.from(allCards).some(card => card.style.display !== 'none');
+                sub.style.display = hasVisible ? 'block' : 'none';
             });
         }
+
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Add scroll animation
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.card').forEach(card => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(20px)';
+            card.style.transition = 'opacity 0.6s, transform 0.6s';
+            observer.observe(card);
+        });
     </script>
 </body>
 </html>
